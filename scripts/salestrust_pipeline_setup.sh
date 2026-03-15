@@ -2,7 +2,7 @@
 set -e
 
 # Diretório do projeto no ambiente Cloud9/laboratório
-PROJECT_DIR="/home/ubuntu/environment/salestrust_pipeline"
+PROJECT_DIR="$(pwd)"
 
 echo "Iniciando configuração do projeto..."
 echo "Diretório do projeto: $PROJECT_DIR"
