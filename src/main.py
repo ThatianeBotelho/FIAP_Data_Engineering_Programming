@@ -17,7 +17,7 @@ def config_logging() -> None:
         format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
         datefmt="%Y-%m-%d %H:%M:%S",
         handlers=[
-            logging.FileHandler("./salestrust_pipeline/logs/pipeline.log"),
+            logging.FileHandler("logs/pipeline.log"),
             logging.StreamHandler()
         ])
 
