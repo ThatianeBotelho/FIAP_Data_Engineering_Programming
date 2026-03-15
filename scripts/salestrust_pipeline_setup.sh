@@ -6,10 +6,50 @@ PROJECT_DIR="$(pwd)"
 echo "Iniciando configuração do projeto..."
 echo "Diretório do projeto: $PROJECT_DIR"
 
-# Garante diretórios operacionais
+# Criação da estrutura principal
+mkdir -p "$PROJECT_DIR"
+mkdir -p "$PROJECT_DIR/config"
+mkdir -p "$PROJECT_DIR/dist"
 mkdir -p "$PROJECT_DIR/data/input"
 mkdir -p "$PROJECT_DIR/data/output"
 mkdir -p "$PROJECT_DIR/logs"
+mkdir -p "$PROJECT_DIR/scripts"
+mkdir -p "$PROJECT_DIR/src/configs"
+mkdir -p "$PROJECT_DIR/src/session"
+mkdir -p "$PROJECT_DIR/src/io_utils"
+mkdir -p "$PROJECT_DIR/src/processing"
+mkdir -p "$PROJECT_DIR/src/pipeline"
+mkdir -p "$PROJECT_DIR/tests"
+
+# Criação dos arquivos de configuração
+touch "$PROJECT_DIR/config/settings.yaml"
+
+# Criação dos arquivos __init__.py
+touch "$PROJECT_DIR/src/__init__.py"
+touch "$PROJECT_DIR/src/configs/__init__.py"
+touch "$PROJECT_DIR/src/session/__init__.py"
+touch "$PROJECT_DIR/src/io_utils/__init__.py"
+touch "$PROJECT_DIR/src/processing/__init__.py"
+touch "$PROJECT_DIR/src/pipeline/__init__.py"
+touch "$PROJECT_DIR/tests/__init__.py"
+
+# Criação dos arquivos-fonte principais
+touch "$PROJECT_DIR/src/configs/settings.py"
+touch "$PROJECT_DIR/src/session/spark_session.py"
+touch "$PROJECT_DIR/src/io_utils/data_handler.py"
+touch "$PROJECT_DIR/src/processing/transformations.py"
+touch "$PROJECT_DIR/src/pipeline/pipeline.py"
+touch "$PROJECT_DIR/src/main.py"
+
+# Arquivos de teste
+touch "$PROJECT_DIR/tests/test_transformations.py"
+
+# Arquivos de empacotamento e documentação
+touch "$PROJECT_DIR/pyproject.toml"
+touch "$PROJECT_DIR/requirements.txt"
+touch "$PROJECT_DIR/MANIFEST.in"
+touch "$PROJECT_DIR/README.md"
+touch "$PROJECT_DIR/.gitignore"
 
 # Criação do ambiente virtual
 if [ ! -d "$PROJECT_DIR/.venv" ]; then
