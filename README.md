@@ -1,70 +1,89 @@
 # SalesTrust Pipeline
 
 Projeto final da disciplina **Data Engineering Programming**.
+Pipeline de dados desenvolvido em **PySpark**, estruturado com **orientação a objetos**, responsável por gerar um relatório analítico de pedidos de venda com pagamentos recusados e classificados como legítimos na avaliação de fraude.
+
 
 ## Objetivo
 
-Desenvolver um pipeline em PySpark para gerar um relatório de pedidos de venda com pagamentos recusados (`status=false`) e classificados como legítimos na avaliação de fraude (`fraude=false`), considerando apenas pedidos do ano de 2025.
+Desenvolver um pipeline responsável por gerar um relatório de pedidos de venda com pagamentos recusados (`status=false`) e classificados como legítimos na avaliação de fraude (`fraude=false`), considerando apenas pedidos do ano de 2025. O resultado do processamento é persistido em formato Parquet.
 
-## Regras de negócio atendidas
+## Regras de negócio
 
-O relatório final contém:
-
+O dataset final contém:
 1. Identificador do pedido
 2. Estado (UF)
 3. Forma de pagamento
 4. Valor total do pedido
 5. Data do pedido
 
-Além disso:
-
-- considera apenas pedidos de 2025
-- filtra pagamentos com `status=false`
-- filtra pagamentos com `avaliacao_fraude.fraude=false`
-- ordena por `uf`, `forma_pagamento` e `data_pedido`
-- grava a saída em formato parquet
+Durante o processamento são aplicados os seguintes critérios:
+- considerar apenas pedidos realizados no ano de **2025**
+- filtrar pagamentos com `status=false`
+- considerar apenas registros com `avaliacao_fraude.fraude=false`
+- ordenar o resultado por `uf`, `forma_pagamento` e `data_pedido`
+- grava a saída em formato **Parquet**
 
 ## Estrutura do projeto
 
 ```text
 salestrust_pipeline/
 ├── config/
+│   └── settings.yaml
 ├── data/
+│   ├── input/
+│   │   ├── dataset-json-pagamentos/
+│   │   └── datasets-csv-pedidos/
+│   └── output/
 ├── logs/
 ├── scripts/
+│   └── salestrust_pipeline_setup.sh
 ├── src/
-└── tests/
+│   ├── main.py
+│   ├── configs/
+│   │   └── settings.py
+│   ├── session/
+│   │   └── spark_session.py
+│   ├── io_utils/
+│   │   └── data_handler.py
+│   ├── processing/
+│   │   └── transformations.py
+│   └── pipeline/
+│       └── pipeline.py
+├── tests/
+│   └── test_transformations.py
+├── README.md
+├── MANIFEST.in
+├── pyproject.toml
+├── requirements.txt
 ```
 
-## Criação do ambiente virtual
+## Requisitos
 
-A partir de `/home/ubuntu/environment`:
+- Python 3.9 ou superior
+- Java (necessário para execução do Apache Spark)
+- Git instalado
+
+## Preparação do ambiente
+
+### Clonar o repositório
 
 ```bash
-python3 -m venv salestrust_pipeline/.venv
-source salestrust_pipeline/.venv/bin/activate
+git clone https://github.com/ThatianeBotelho/FIAP_Data_Engineering_Programming.git
+cd salestrust_pipeline
 ```
 
-## Instalação das dependências
+Após clonar o repositório, execute:
 
 ```bash
-pip install --upgrade pip
-pip install -r salestrust_pipeline/requirements.txt
+bash scripts/salestrust_pipeline_setup.sh
 ```
 
-## Clonagem dos datasets
+O script realiza automaticamente:
+- criação do ambiente virtual
+- instalação das dependências
+- clonagem dos datasets necessários
 
-### Pagamentos
-
-```bash
-git clone https://github.com/infobarbosa/dataset-json-pagamentos salestrust_pipeline/data/input/dataset-json-pagamentos
-```
-
-### Pedidos
-
-```bash
-git clone https://github.com/infobarbosa/datasets-csv-pedidos salestrust_pipeline/data/input/datasets-csv-pedidos
-```
 
 ## Execução dos testes
 
