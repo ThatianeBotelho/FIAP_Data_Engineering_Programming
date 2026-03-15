@@ -11,7 +11,7 @@ class AppConfig:
     centralizadas da aplicação a partir do arquivo settings.yaml.
     """
 
-    def __init__(self, path: str = "./salestrust_pipeline/config/settings.yaml") -> None:
+    def __init__(self, path: str = "config/settings.yaml") -> None:
         logger.info("Carregando configurações da aplicação do arquivo YAML.")
 
         with open(path, "r", encoding="utf-8") as file:
