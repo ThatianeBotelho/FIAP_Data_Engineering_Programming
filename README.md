@@ -69,7 +69,7 @@ salestrust_pipeline/
 ### Clonar o repositório
 
 ```bash
-git clone https://github.com/ThatianeBotelho/FIAP_Data_Engineering_Programming.git
+git clone https://github.com/ThatianeBotelho/FIAP_Data_Engineering_Programming.git salestrust_pipeline
 cd salestrust_pipeline
 ```
 
@@ -109,6 +109,17 @@ O relatório parquet será salvo em:
 salestrust_pipeline/data/output/sales_orders_report_2025/
 ```
 
+Para visualizar uma amostra dos dados gerados (20 primeiras linhas), execute:
+```bash
+python -c "
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.getOrCreate()
+df = spark.read.parquet('data/output/sales_orders_report_2025/')
+df.show(20, truncate=False)
+spark.stop()
+"
+```
+
 ## Observações
 
 - Todos os schemas foram definidos explicitamente.
@@ -118,6 +129,3 @@ salestrust_pipeline/data/output/sales_orders_report_2025/
 - Há logging e tratamento de erros.
 - Há teste unitário com `pytest`.
 
-## Repositório público
-
-Adicionar aqui o link do repositório GitHub público antes da entrega.
