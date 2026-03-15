@@ -1,59 +1,15 @@
 #!/bin/bash
 set -e
 
-# Diretório do projeto no ambiente Cloud9/laboratório
 PROJECT_DIR="$(pwd)"
 
 echo "Iniciando configuração do projeto..."
 echo "Diretório do projeto: $PROJECT_DIR"
 
-# Criação da estrutura principal
-mkdir -p "$PROJECT_DIR"
-mkdir -p "$PROJECT_DIR/config"
-mkdir -p "$PROJECT_DIR/dist"
+# Garante diretórios operacionais
 mkdir -p "$PROJECT_DIR/data/input"
 mkdir -p "$PROJECT_DIR/data/output"
 mkdir -p "$PROJECT_DIR/logs"
-mkdir -p "$PROJECT_DIR/scripts"
-mkdir -p "$PROJECT_DIR/src/configs"
-mkdir -p "$PROJECT_DIR/src/session"
-mkdir -p "$PROJECT_DIR/src/io_utils"
-mkdir -p "$PROJECT_DIR/src/processing"
-mkdir -p "$PROJECT_DIR/src/pipeline"
-mkdir -p "$PROJECT_DIR/tests"
-
-# Criação dos arquivos de configuração
-touch "$PROJECT_DIR/config/settings.yaml"
-
-# Criação dos arquivos __init__.py
-touch "$PROJECT_DIR/src/__init__.py"
-touch "$PROJECT_DIR/src/configs/__init__.py"
-touch "$PROJECT_DIR/src/session/__init__.py"
-touch "$PROJECT_DIR/src/io_utils/__init__.py"
-touch "$PROJECT_DIR/src/processing/__init__.py"
-touch "$PROJECT_DIR/src/pipeline/__init__.py"
-touch "$PROJECT_DIR/tests/__init__.py"
-
-# Criação dos arquivos-fonte principais
-touch "$PROJECT_DIR/src/configs/settings.py"
-touch "$PROJECT_DIR/src/session/spark_session.py"
-touch "$PROJECT_DIR/src/io_utils/data_handler.py"
-touch "$PROJECT_DIR/src/processing/transformations.py"
-touch "$PROJECT_DIR/src/pipeline/pipeline.py"
-touch "$PROJECT_DIR/src/main.py"
-
-# Arquivos de teste
-touch "$PROJECT_DIR/tests/test_transformations.py"
-
-# Arquivos de empacotamento e documentação
-touch "$PROJECT_DIR/pyproject.toml"
-touch "$PROJECT_DIR/requirements.txt"
-touch "$PROJECT_DIR/MANIFEST.in"
-touch "$PROJECT_DIR/README.md"
-touch "$PROJECT_DIR/.gitignore"
-
-# Arquivo de log
-touch "$PROJECT_DIR/logs/pipeline.log"
 
 # Criação do ambiente virtual
 if [ ! -d "$PROJECT_DIR/.venv" ]; then
@@ -87,7 +43,5 @@ else
 fi
 
 echo "Configuração finalizada com sucesso."
-echo "Para ativar o ambiente depois, rode:"
-echo "source /home/ubuntu/environment/salestrust_pipeline/.venv/bin/activate"
-
-
+echo "Para ativar o ambiente virtual depois, rode:"
+echo "source .venv/bin/activate"
