@@ -3,9 +3,9 @@ spark:
   app_name: "SalesTrust Pipeline"
 
 paths:
-  orders: "./salestrust_pipeline/data/input/datasets-csv-pedidos/data/pedidos/"
-  payments: "./salestrust_pipeline/data/input/dataset-json-pagamentos/data/pagamentos/"
-  output: "./salestrust_pipeline/data/output/sales_orders_report_2025/"
+  orders: "data/input/datasets-csv-pedidos/data/pedidos/"
+  payments: "data/input/dataset-json-pagamentos/data/pagamentos/"
+  output: "data/output/sales_orders_report_2025/"
 
 file_options:
   orders_csv:
