@@ -111,6 +111,8 @@ salestrust_pipeline/data/output/sales_orders_report_2025/
 
 Para visualizar uma amostra dos dados gerados (20 primeiras linhas), execute:
 ```bash
+cd salestrust_pipeline
+ls data/output/
 python -c "
 from pyspark.sql import SparkSession
 spark = SparkSession.builder.getOrCreate()
